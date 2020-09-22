@@ -1,14 +1,23 @@
 import React from "react";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 import { render } from "react-dom";
-import "./styles/styles.css";
-import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
+import { tracksReducer } from "./store/reducers/tracksReducer";
+
+import "./styles/styles.css";
+import App from "./App";
+
+const store = createStore(tracksReducer, applyMiddleware(thunk));
 
 render(
-  <Router>
-    <App />
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 

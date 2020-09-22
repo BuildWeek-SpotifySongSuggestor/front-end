@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { fetchTracks } from "../store/actions/tracksActions";
 
 const ProfilePage = () => {
   return (
@@ -8,4 +10,11 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    state,
+  };
+};
+
+export default connect(mapStateToProps, { fetchTracks })(ProfilePage);
