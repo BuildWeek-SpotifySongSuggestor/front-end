@@ -82,26 +82,24 @@ export default function Login() {
     <>
       <h2>Welcome Back!</h2>
       <form onSubmit={submitForm}>
-        <label htmlFor="username">
+        <label htmlFor='username'>
           Username:
           <input
-            name="username"
-            id="username"
-            type="text"
+            name='username'
+            id='username'
+            type='text'
             value={login.username}
-            onChange={onChange}
-          ></input>
+            onChange={onChange}></input>
           {errors.username.length > 0 ? <p>{errors.username}</p> : null}
         </label>
-        <label htmlFor="password">
+        <label htmlFor='password'>
           Password:
           <input
-            name="password"
-            id="password"
-            type="password"
+            name='password'
+            id='password'
+            type='password'
             value={login.password}
-            onChange={onChange}
-          ></input>
+            onChange={onChange}></input>
           {errors.password.length > 0 ? <p>{errors.password}</p> : null}
         </label>
         <button disabled={disabled}>Submit</button>
