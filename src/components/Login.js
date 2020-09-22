@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { axiosWithAuth } from "../utils";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 
 export default function Login() {
+  let history = useHistory();
   //state for login
   const [login, setLogin] = useState({
     username: "",
@@ -64,11 +66,13 @@ export default function Login() {
       .post("api/auth/login", login)
       .then((res) => {
         debugger;
+        window.localStorage.setItem("token", res.data.token);
+        history.push("/profile");
         //reset form
-        setLogin({
-          username: "",
-          password: "",
-        });
+        // setLogin({
+        //   username: "",
+        //   password: "",
+        // });
       })
       .catch((err) => {
         console.log("there was an error", err);

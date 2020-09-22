@@ -68,14 +68,15 @@ export default function Register() {
     axiosWithAuth()
       .post("api/auth/register", login)
       .then((res) => {
-        window.localStorage.setItem("token", res.data.password);
+        debugger;
+        window.localStorage.setItem("token", res.data.token);
         history.push("/login");
         //reset form
-        setLogin({
-          username: "",
-          email: "",
-          password: "",
-        });
+        // setLogin({
+        //   username: "",
+        //   email: "",
+        //   password: "",
+        // });
       })
       .catch((err) => {
         console.log("there was an error", err);

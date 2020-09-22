@@ -20,7 +20,7 @@ function App() {
           <Register />
         </Route>
 
-        <PrivateRoute exact path='/profile'>
+        <PrivateRoute path='/profile'>
           <ProfilePage />
         </PrivateRoute>
       </Switch>
