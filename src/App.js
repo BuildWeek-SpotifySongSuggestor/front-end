@@ -10,17 +10,16 @@ function App() {
     <div className='App'>
       <Link to='/'>Register</Link>
       <Link to='/login'>Login</Link>
-      <h1>Hello</h1>
       <Switch>
-        <Route path='/login'>
+        <Route exact path='/login'>
           <Login />
         </Route>
 
-        <Route path='/'>
+        <Route exact path='/'>
           <Register />
         </Route>
 
-        <PrivateRoute path='/profile'>
+        <PrivateRoute exact path='/profile'>
           <ProfilePage />
         </PrivateRoute>
       </Switch>
