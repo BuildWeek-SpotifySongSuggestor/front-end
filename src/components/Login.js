@@ -1,5 +1,5 @@
-import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import { axiosWithAuth } from "../utils";
 import * as yup from "yup";
 
 export default function Login() {
@@ -14,9 +14,6 @@ export default function Login() {
     username: "",
     password: "",
   });
-
-  //state for axios post
-  const [post, setPost] = useState([]);
 
   //state for disabled submit button
   const [disabled, setDisabled] = useState(true);
@@ -63,10 +60,10 @@ export default function Login() {
   //submits valid form and resets it to blank
   const submitForm = (e) => {
     e.preventDefault();
-    Axios.post("https://reqres.in/api/users", login)
+    axiosWithAuth()
+      .post("api/auth/login", login)
       .then((res) => {
-        setPost(res.data);
-        console.log("success!");
+        debugger;
         //reset form
         setLogin({
           username: "",

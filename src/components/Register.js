@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import { Link, useHistory } from "react-router-dom";
+import { axiosWithAuth } from "../utils";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
 
 export default function Register() {
+  let history = useHistory();
   //state for login
   const [login, setLogin] = useState({
     username: "",
@@ -17,9 +18,6 @@ export default function Register() {
     email: "",
     password: "",
   });
-
-  //state for axios post
-  const [post, setPost] = useState([]);
 
   //state for disabled submit button
   const [disabled, setDisabled] = useState(true);
@@ -67,10 +65,11 @@ export default function Register() {
   //submits valid form and resets it to blank
   const submitForm = (e) => {
     e.preventDefault();
-    Axios.post("https://reqres.in/api/users", login)
+    axiosWithAuth()
+      .post("api/auth/register", login)
       .then((res) => {
-        setPost(res.data);
-        console.log("success!");
+        window.localStorage.setItem("token", res.data.password);
+        history.push("/login");
         //reset form
         setLogin({
           username: "",
