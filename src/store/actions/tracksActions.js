@@ -6,17 +6,17 @@ export const FETCH_TRACKS_ERROR = "FETCH_TRACKS_ERROR";
 export const ADD_TRACK = "ADD_TRACK";
 export const REMOVE_TRACK = "REMOVE_TRACK";
 
-export const fetchTracks = () => {
+export const fetchTracks = (search) => {
   return (dispatch) => {
     dispatch({ type: FETCH_TRACKS_START });
 
     axiosWithAuth()
-      .get("api/tracks/:search")
+      .get(`api/tracks/${search}`)
       .then((res) => {
-        dispatch({ type: FETCH_TRACKS_SUCCESS, payload: res.data.tracks });
+        dispatch({ type: FETCH_TRACKS_SUCCESS, payload: res.data });
       })
-      .catch((res) => {
-        console.log(res);
+      .catch((err) => {
+        dispatch({ type: FETCH_TRACKS_ERROR, payload: err });
       });
   };
 };
