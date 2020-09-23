@@ -13,8 +13,6 @@ export const fetchTracks = () => {
     axiosWithAuth()
       .get("api/tracks/:search")
       .then((res) => {
-        debugger;
-        console.log(res);
         dispatch({ type: FETCH_TRACKS_SUCCESS, payload: res.data.tracks });
       })
       .catch((res) => {
