@@ -84,7 +84,9 @@ export default function Register() {
 
   return (
     <>
-      <h2>Let's Get You Signed Up!</h2>
+      <header>
+        <h2>Let's Get You Signed Up!</h2>
+      </header>
       <form onSubmit={submitForm}>
         <label htmlFor='username'>
           Username:
@@ -116,9 +118,20 @@ export default function Register() {
             onChange={onChange}></input>
           {errors.password.length > 0 ? <p>{errors.password}</p> : null}
         </label>
-        <button disabled={disabled}>Submit</button>
-        <Link to='/login'>Already Have An Account?</Link>
+
+        <label htmlFor="submit">
+          Submit:
+          <button id="submit" disabled={disabled}>
+            Submit
+          </button>
+        </label>
+
       </form>
+      <div className="have-account-container">
+        <Link id="have-account" to="/login">
+          Already Have An Account?
+        </Link>
+      </div>
     </>
   );
 }
