@@ -10,6 +10,7 @@ const ProfilePage = ({ fetchTracks }) => {
   return (
     <>
       <h1>Profile</h1>
+      <input type='text' />
     </>
   );
 };
