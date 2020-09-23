@@ -7,40 +7,27 @@ import ProfilePage from "./components/ProfilePage";
 
 function App() {
   return (
-<<<<<<< HEAD
     <div className='App'>
-      <Link to='/'>Register</Link>
-      <Link to='/login'>Login</Link>
-      <Switch>
-        <Route exact path='/login'>
-          <Login />
-        </Route>
-
-        <Route exact path='/'>
-          <Register />
-        </Route>
-
-        <PrivateRoute exact path='/profile'>
-          <ProfilePage />
-        </PrivateRoute>
-      </Switch>
-=======
-    <div className="App">
       <nav>
-        <NavLink to="/">Register</NavLink>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to='/'>Register</NavLink>
+        <NavLink to='/login'>Login</NavLink>
+        <NavLink to='/profile'>Profile</NavLink>
       </nav>
-      <section className="form-container">
+      <section className='form-container'>
         <Switch>
-          <Route path="/login">
+          <Route exact path='/login'>
             <Login />
           </Route>
-          <Route path="/">
+
+          <Route exact path='/'>
             <Register />
           </Route>
+
+          <PrivateRoute exact path='/profile'>
+            <ProfilePage />
+          </PrivateRoute>
         </Switch>
       </section>
->>>>>>> 71b9a871988ef390c6fa4ca47277a0a619e69aba
     </div>
   );
 }
