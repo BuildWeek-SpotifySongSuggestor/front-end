@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils";
 import * as yup from "yup";
+import { gsap } from "gsap";
+import MediumSpotifyIcon from "../assets/MediumSpotifyIcon.png";
 
 export default function Register() {
   let history = useHistory();
@@ -82,40 +84,52 @@ export default function Register() {
       });
   };
 
+  useEffect(() => {
+    gsap.from(".icon", {
+      duration: 2.5,
+      y: "200%",
+      delay: 0.3,
+      ease: "bounce",
+    });
+  }, []);
+
   return (
     <>
       <header>
         <h2>Let's Get You Signed Up!</h2>
       </header>
       <form onSubmit={submitForm}>
-        <label htmlFor='username'>
+        <label htmlFor="username">
           Username:
           <input
-            name='username'
-            id='username'
-            type='text'
+            name="username"
+            id="username"
+            type="text"
             value={login.username}
-            onChange={onChange}></input>
+            onChange={onChange}
+          ></input>
           {errors.username.length > 0 ? <p>{errors.username}</p> : null}
         </label>
-        <label htmlFor='email'>
+        <label htmlFor="email">
           Email:
           <input
-            name='email'
-            id='email'
-            type='email'
+            name="email"
+            id="email"
+            type="email"
             value={login.email}
-            onChange={onChange}></input>
+            onChange={onChange}
+          ></input>
           {errors.email.length > 0 ? <p>{errors.email}</p> : null}
         </label>
-        <label htmlFor='password'>
+        <label htmlFor="password">
           Password:
           <input
-            name='password'
-            id='password'
-            type='password'
+            name="password"
+            id="password"
+            type="password"
             value={login.password}
-            onChange={onChange}></input>
+            onChange={onChange}
+          ></input>
           {errors.password.length > 0 ? <p>{errors.password}</p> : null}
         </label>
 
@@ -125,12 +139,14 @@ export default function Register() {
             Submit
           </button>
         </label>
-
       </form>
       <div className="have-account-container">
         <Link id="have-account" to="/login">
           Already Have An Account?
         </Link>
+      </div>
+      <div className="icon">
+        <img src={MediumSpotifyIcon} />
       </div>
     </>
   );
