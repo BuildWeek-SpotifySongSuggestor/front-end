@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchTracks } from "../store/actions/tracksActions";
 
-const ProfilePage = () => {
+const ProfilePage = ({ fetchTracks }) => {
+  useEffect(() => {
+    fetchTracks();
+  }, [fetchTracks]);
+
   return (
     <>
       <h1>Profile</h1>
@@ -13,7 +17,9 @@ const ProfilePage = () => {
 const mapStateToProps = (state) => {
   console.log(state);
   return {
-    state,
+    tracks: state.tracks,
+    isLoading: state.isLoading,
+    error: state.error,
   };
 };
 
