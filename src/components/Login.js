@@ -81,7 +81,9 @@ export default function Login() {
 
   return (
     <>
-      <h2>Welcome Back!</h2>
+      <header>
+        <h2>Welcome Back!</h2>
+      </header>
       <form onSubmit={submitForm}>
         <label htmlFor='username'>
           Username:
@@ -103,7 +105,12 @@ export default function Login() {
             onChange={onChange}></input>
           {errors.password.length > 0 ? <p>{errors.password}</p> : null}
         </label>
-        <button disabled={disabled}>Submit</button>
+        <label htmlFor="submit">
+          Submit:
+          <button id="submit" disabled={disabled}>
+            Submit
+          </button>
+        </label>
       </form>
     </>
   );
