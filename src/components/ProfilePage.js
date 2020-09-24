@@ -1,24 +1,47 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchTracks } from "../store/actions/tracksActions";
+import { fetchTracks } from "../store/actions";
+import TrackPreviewCard from "./TrackPreviewCard";
 
-const ProfilePage = ({ fetchTracks }) => {
+const ProfilePage = ({ fetchTracks, results, error, isLoading }) => {
   useEffect(() => {
     fetchTracks();
   }, [fetchTracks]);
 
+  const [search, setSearch] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchTracks(search);
+  };
+
+  if (isLoading) return <p>Loading . . .</p>;
+
+  console.log(results.tracks);
   return (
     <>
       <h1>Profile</h1>
-      <input type='text' />
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type='text'
+          name='search'
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </form>
+
+      {results.tracks &&
+        results.tracks.items.map((item) => (
+          <TrackPreviewCard key={item.id} id={item.id} item={item} />
+        ))}
     </>
   );
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log(state.results);
   return {
-    tracks: state.tracks,
+    results: state.results,
     isLoading: state.isLoading,
     error: state.error,
   };

@@ -4,6 +4,7 @@ import { Route, NavLink, Switch } from "react-router-dom";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import ProfilePage from "./components/ProfilePage";
+import TrackSingle from "./components/TrackSingle";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
 
           <PrivateRoute exact path='/profile'>
             <ProfilePage />
+          </PrivateRoute>
+
+          <PrivateRoute exact path='/track/:id'>
+            <TrackSingle />
           </PrivateRoute>
         </Switch>
       </section>
