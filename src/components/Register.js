@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { axiosWithAuth } from "../utils";
+// import { axiosWithAuth } from "../utils";
+import Axios from "axios";
 import * as yup from "yup";
 import { gsap } from "gsap";
 import MediumSpotifyIcon from "../assets/MediumSpotifyIcon.png";
@@ -13,6 +14,9 @@ export default function Register() {
     email: "",
     password: "",
   });
+
+  //state for axios post
+  const [post, setPost] = useState([]);
 
   //state for errors
   const [errors, setErrors] = useState({
@@ -64,20 +68,40 @@ export default function Register() {
     });
   }, [login]);
 
+  // //submits valid form with token
+  // const submitForm = (e) => {
+  //   e.preventDefault();
+  //   axiosWithAuth()
+  //     .post("api/auth/register", login)
+  //     .then((res) => {
+  //       window.localStorage.setItem("token", res.data.token);
+  //       history.push("/login");
+  //       //reset form
+  //       // setLogin({
+  //       //   username: "",
+  //       //   email: "",
+  //       //   password: "",
+  //       // });
+  //     })
+  //     .catch((err) => {
+  //       console.log("there was an error", err);
+  //     });
+  // };
+
   //submits valid form and resets it to blank
   const submitForm = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .post("api/auth/register", login)
+    Axios.post("https://reqres.in/api/users", login)
       .then((res) => {
-        window.localStorage.setItem("token", res.data.token);
-        history.push("/login");
+        setPost(res.data);
+        console.log("success!");
+        // history.push("/login");
         //reset form
-        // setLogin({
-        //   username: "",
-        //   email: "",
-        //   password: "",
-        // });
+        setLogin({
+          username: "",
+          email: "",
+          password: "",
+        });
       })
       .catch((err) => {
         console.log("there was an error", err);
@@ -154,6 +178,10 @@ export default function Register() {
       <div className="icon">
         <img src={MediumSpotifyIcon} alt="spotify icon" />
       </div>
+      <h3>Username: {post.username}</h3>
+      <h3>Email: {post.email}</h3>
+      <h3>Password: {post.password}</h3>
+      <h3>ID: {post.id}</h3>
     </>
   );
 }

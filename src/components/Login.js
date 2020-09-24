@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { axiosWithAuth } from "../utils";
+// import { axiosWithAuth } from "../utils";
+import Axios from "axios";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import { gsap } from "gsap";
@@ -12,6 +13,9 @@ export default function Login() {
     username: "",
     password: "",
   });
+
+  //state for axios post
+  const [post, setPost] = useState([]);
 
   //state for errors
   const [errors, setErrors] = useState({
@@ -61,19 +65,38 @@ export default function Login() {
     });
   }, [login]);
 
+  // //submits valid form with token
+  // const submitForm = (e) => {
+  //   e.preventDefault();
+  //   axiosWithAuth()
+  //     .post("api/auth/login", login)
+  //     .then((res) => {
+  //       window.localStorage.setItem("token", res.data.token);
+  //       history.push("/profile");
+  //       //reset form
+  //       // setLogin({
+  //       //   username: "",
+  //       //   password: "",
+  //       // });
+  //     })
+  //     .catch((err) => {
+  //       console.log("there was an error", err);
+  //     });
+  // };
+
   //submits valid form and resets it to blank
   const submitForm = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .post("api/auth/login", login)
+    Axios.post("https://reqres.in/api/users", login)
       .then((res) => {
-        window.localStorage.setItem("token", res.data.token);
-        history.push("/profile");
+        setPost(res.data);
+        console.log("success!");
+        // history.push("/login");
         //reset form
-        // setLogin({
-        //   username: "",
-        //   password: "",
-        // });
+        setLogin({
+          username: "",
+          password: "",
+        });
       })
       .catch((err) => {
         console.log("there was an error", err);
@@ -133,6 +156,9 @@ export default function Login() {
       <div className="icon">
         <img src={MediumSpotifyIcon} alt="spotify icon" />
       </div>
+      <h3>Username: {post.username}</h3>
+      <h3>Password: {post.password}</h3>
+      <h3>ID: {post.id}</h3>
     </>
   );
 }

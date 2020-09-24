@@ -19,6 +19,7 @@ a {
 body {
   width: 90%;
   margin: auto;
+  overflow: hidden;
 }
 
 nav {
