@@ -83,13 +83,13 @@ export default function Login() {
   useEffect(() => {
     gsap.from(".icon", {
       duration: 2.5,
-      y: "150%",
+      x: "150%",
       delay: 0.3,
-      ease: "bounce",
+      ease: "power3",
     });
     gsap.from(".icon", {
       duration: 1.8,
-      delay: 1.5,
+      delay: 0.5,
       rotation: 360,
       ease: "back",
     });
