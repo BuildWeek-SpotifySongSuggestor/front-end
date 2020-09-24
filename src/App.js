@@ -11,6 +11,9 @@ function App() {
   return (
     <div className='App'>
       <nav>
+        <a href='https://spotify-song-suggester-buildweek2020.netlify.app/index.html'>
+          Home
+        </a>
         <NavLink to='/'>Register</NavLink>
         <NavLink to='/login'>Login</NavLink>
         <NavLink to='/profile'>Profile</NavLink>
