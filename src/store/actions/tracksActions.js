@@ -36,11 +36,11 @@ export const fetchTrackById = (id) => {
   };
 };
 
-export const addTrackById = (user_id, id) => {
+export const addTrackById = (id, userID) => {
   return (dispatch) => {
     dispatch({ type: FETCH_TRACKS_START });
     axiosWithAuth()
-      .post(`api/favorites`, id)
+      .post(`api/favorites`, { id, userID })
       .then((res) => {
         debugger;
         console.log(res);

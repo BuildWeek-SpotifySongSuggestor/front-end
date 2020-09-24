@@ -3,14 +3,18 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchTrackById, addTrackById } from "../store/actions";
 
-const TrackSingle = ({ fetchTrackById, track, isLoading }) => {
+const TrackSingle = ({ fetchTrackById, track, isLoading, addTrackById }) => {
   const { id } = useParams();
   useEffect(() => {
     fetchTrackById(id);
   }, [fetchTrackById, id]);
 
-  if (isLoading) return "Loading . . .";
+  const handleAddFavorite = (e) => {
+    e.preventDefault();
+    addTrackById(id, 2);
+  };
 
+  if (isLoading) return "Loading . . .";
   return (
     <>
       {track.name !== "Undefined" ? (
@@ -23,7 +27,7 @@ const TrackSingle = ({ fetchTrackById, track, isLoading }) => {
           <source src={track.preview_url} />
         </video>
       ) : null}
-      <button onClick={addTrackById()}>Add To Favorites</button>
+      <button onClick={handleAddFavorite}>Add To Favorites</button>
     </>
   );
 };

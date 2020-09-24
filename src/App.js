@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import ProfilePage from "./components/ProfilePage";
 import TrackSingle from "./components/TrackSingle";
+import TrackFavorites from "./components/TrackFavorites";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
 
           <PrivateRoute exact path='/track/:id'>
             <TrackSingle />
+          </PrivateRoute>
+
+          <PrivateRoute exact path='/track/:id'>
+            <TrackFavorites />
           </PrivateRoute>
         </Switch>
       </section>

@@ -39,7 +39,6 @@ const ProfilePage = ({ fetchTracks, results, error, isLoading }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.results);
   return {
     results: state.results,
     isLoading: state.isLoading,

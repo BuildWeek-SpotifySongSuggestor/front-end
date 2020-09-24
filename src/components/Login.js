@@ -6,7 +6,8 @@ import * as yup from "yup";
 export default function Login() {
   let history = useHistory();
   //state for login
-  const [user, setUser] = useState("");
+  const [user_id, setUser_id] = useState("");
+  console.log(user_id);
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -67,7 +68,7 @@ export default function Login() {
       .post("api/auth/login", login)
       .then((res) => {
         window.localStorage.setItem("token", res.data.token);
-        setUser(res.data.data.id);
+        setUser_id(res.data.data.id);
         history.push("/profile");
         //reset form
         // setLogin({
