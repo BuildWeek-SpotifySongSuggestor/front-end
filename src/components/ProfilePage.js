@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { fetchTracks } from "../store/actions/tracksActions";
+import { fetchTracks } from "../store/actions";
 import TrackPreviewCard from "./TrackPreviewCard";
 
 const ProfilePage = ({ fetchTracks, results, error, isLoading }) => {
@@ -31,7 +31,9 @@ const ProfilePage = ({ fetchTracks, results, error, isLoading }) => {
       </form>
 
       {results.tracks &&
-        results.tracks.items.map((item) => <TrackPreviewCard item={item} />)}
+        results.tracks.items.map((item) => (
+          <TrackPreviewCard key={item.id} id={item.id} item={item} />
+        ))}
     </>
   );
 };
