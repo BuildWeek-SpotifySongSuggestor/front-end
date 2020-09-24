@@ -6,6 +6,7 @@ import * as yup from "yup";
 export default function Login() {
   let history = useHistory();
   //state for login
+  const [user, setUser] = useState("");
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -66,6 +67,7 @@ export default function Login() {
       .post("api/auth/login", login)
       .then((res) => {
         window.localStorage.setItem("token", res.data.token);
+        setUser(res.data.data.id);
         history.push("/profile");
         //reset form
         // setLogin({
@@ -104,9 +106,9 @@ export default function Login() {
             onChange={onChange}></input>
           {errors.password.length > 0 ? <p>{errors.password}</p> : null}
         </label>
-        <label htmlFor="submit">
+        <label htmlFor='submit'>
           Submit:
-          <button id="submit" disabled={disabled}>
+          <button id='submit' disabled={disabled}>
             Submit
           </button>
         </label>
