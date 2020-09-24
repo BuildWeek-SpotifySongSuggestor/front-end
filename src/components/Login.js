@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { axiosWithAuth } from "../utils";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
+import { gsap } from "gsap";
+import MediumSpotifyIcon from "../assets/MediumSpotifyIcon.png";
 
 export default function Login() {
   let history = useHistory();
@@ -78,30 +80,47 @@ export default function Login() {
       });
   };
 
+  useEffect(() => {
+    gsap.from(".icon", {
+      duration: 2.5,
+      y: "150%",
+      delay: 0.3,
+      ease: "bounce",
+    });
+    gsap.from(".icon", {
+      duration: 1.8,
+      delay: 1.5,
+      rotation: 360,
+      ease: "back",
+    });
+  }, []);
+
   return (
     <>
       <header>
         <h2>Welcome Back!</h2>
       </header>
       <form onSubmit={submitForm}>
-        <label htmlFor='username'>
+        <label htmlFor="username">
           Username:
           <input
-            name='username'
-            id='username'
-            type='text'
+            name="username"
+            id="username"
+            type="text"
             value={login.username}
-            onChange={onChange}></input>
+            onChange={onChange}
+          ></input>
           {errors.username.length > 0 ? <p>{errors.username}</p> : null}
         </label>
-        <label htmlFor='password'>
+        <label htmlFor="password">
           Password:
           <input
-            name='password'
-            id='password'
-            type='password'
+            name="password"
+            id="password"
+            type="password"
             value={login.password}
-            onChange={onChange}></input>
+            onChange={onChange}
+          ></input>
           {errors.password.length > 0 ? <p>{errors.password}</p> : null}
         </label>
         <label htmlFor="submit">
@@ -111,6 +130,9 @@ export default function Login() {
           </button>
         </label>
       </form>
+      <div className="icon">
+        <img src={MediumSpotifyIcon} alt="spotify icon" />
+      </div>
     </>
   );
 }

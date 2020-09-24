@@ -87,9 +87,15 @@ export default function Register() {
   useEffect(() => {
     gsap.from(".icon", {
       duration: 2.5,
-      y: "200%",
+      y: "150%",
       delay: 0.3,
       ease: "bounce",
+    });
+    gsap.from(".icon", {
+      duration: 1.8,
+      delay: 1.5,
+      rotation: 360,
+      ease: "back",
     });
   }, []);
 
@@ -146,7 +152,7 @@ export default function Register() {
         </Link>
       </div>
       <div className="icon">
-        <img src={MediumSpotifyIcon} />
+        <img src={MediumSpotifyIcon} alt="spotify icon" />
       </div>
     </>
   );
