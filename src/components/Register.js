@@ -125,58 +125,60 @@ export default function Register() {
 
   return (
     <>
-      <header>
-        <h2>Let's Get You Signed Up!</h2>
-      </header>
-      <form onSubmit={submitForm}>
-        <label htmlFor="username">
-          Username:
-          <input
-            name="username"
-            id="username"
-            type="text"
-            value={login.username}
-            onChange={onChange}
-          ></input>
-          {errors.username.length > 0 ? <p>{errors.username}</p> : null}
-        </label>
-        <label htmlFor="email">
-          Email:
-          <input
-            name="email"
-            id="email"
-            type="email"
-            value={login.email}
-            onChange={onChange}
-          ></input>
-          {errors.email.length > 0 ? <p>{errors.email}</p> : null}
-        </label>
-        <label htmlFor="password">
-          Password:
-          <input
-            name="password"
-            id="password"
-            type="password"
-            value={login.password}
-            onChange={onChange}
-          ></input>
-          {errors.password.length > 0 ? <p>{errors.password}</p> : null}
-        </label>
+      <div className="main-container">
+        <header>
+          <h2>Let's Get You Signed Up!</h2>
+        </header>
+        <form onSubmit={submitForm}>
+          <label htmlFor="username">
+            Username:
+            <input
+              name="username"
+              id="username"
+              type="text"
+              value={login.username}
+              onChange={onChange}
+            ></input>
+            {errors.username.length > 0 ? <p>{errors.username}</p> : null}
+          </label>
+          <label htmlFor="email">
+            Email:
+            <input
+              name="email"
+              id="email"
+              type="email"
+              value={login.email}
+              onChange={onChange}
+            ></input>
+            {errors.email.length > 0 ? <p>{errors.email}</p> : null}
+          </label>
+          <label htmlFor="password">
+            Password:
+            <input
+              name="password"
+              id="password"
+              type="password"
+              value={login.password}
+              onChange={onChange}
+            ></input>
+            {errors.password.length > 0 ? <p>{errors.password}</p> : null}
+          </label>
 
-        <label htmlFor="submit">
-          Submit:
-          <button id="submit" disabled={disabled}>
-            Submit
-          </button>
-        </label>
-      </form>
-      <div className="have-account-container">
-        <Link id="have-account" to="/login">
-          Already Have An Account?
-        </Link>
-      </div>
-      <div className="icon">
-        <img src={MediumSpotifyIcon} alt="spotify icon" />
+          <label htmlFor="submit">
+            Submit:
+            <button id="submit" disabled={disabled}>
+              Submit
+            </button>
+          </label>
+        </form>
+        <div className="have-account-container">
+          <Link id="have-account" to="/login">
+            Already Have An Account?
+          </Link>
+        </div>
+        <div className="icon">
+          <img src={MediumSpotifyIcon} alt="spotify icon" />
+        </div>
       </div>
       <h3>Username: {post.username}</h3>
       <h3>Email: {post.email}</h3>
